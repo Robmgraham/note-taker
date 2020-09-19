@@ -5,7 +5,6 @@ const path = require("path");
 
 // Sets up the Express App
 var PORT = 8080;
-var server = http.createServer(handleRequest);
 var app = express();
 
 // Sets up the Express app to handle data parsing
@@ -23,17 +22,14 @@ app.get("/*", function(req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// * The application should have a `db.json` file on the backend that will be used 
-// to store and retrieve notes using the `fs` module.
-app.get("/ ")
 
 
 const scriptPath = __dirname;
-console.log(scriptPath);
+// console.log(scriptPath);
 
 function readFromDB() {
     const filePath = path.join(scriptPath, "/api/notes", "db.json");
-    console.log(filePath);
+    // console.log(filePath);
     fs.readFile(
         filePath, { encoding: 'utf8' },
         function(error, fileContent) {
@@ -53,3 +49,10 @@ function postFromDB() {
     );
 }
 postFromDB();
+
+// Starts the server to begin listening
+
+
+app.listen(PORT, function() {
+    console.log("App listening on PORT" + PORT);
+});

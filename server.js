@@ -25,14 +25,13 @@ app.get("/*", function(req, res) {
 
 
 const scriptPath = __dirname;
-// console.log(scriptPath);
+const filePath = path.join(scriptPath, "db", "db.json");
 
 function readFromDB() {
-    const filePath = path.join(scriptPath, "/api/notes", "db.json");
-    // console.log(filePath);
     fs.readFile(
         filePath, { encoding: 'utf8' },
         function(error, fileContent) {
+            console.log(error);
             console.log(fileContent);
         }
     );
@@ -40,9 +39,8 @@ function readFromDB() {
 readFromDB();
 
 function postFromDB() {
-    const postPath = path.join(scriptPath, "/api/notes", "db.json");
     fs.writeFile(
-        postPath, { encoding: "utf8" },
+        filePath, { encoding: "utf8" },
         function(error, fileContent) {
             console.log(fileContent);
         }
@@ -50,9 +48,23 @@ function postFromDB() {
 }
 postFromDB();
 
+// Assign unique id when note is saved
+var notes = i[{
+
+
+}];
+
+
+//In order to delete a not, first read all notes, then remove the note with id then rewrite
+function deleteFromDB() {
+    fs.delete(
+        filepath, note
+    )
+}
+
+
+
 // Starts the server to begin listening
-
-
 app.listen(PORT, function() {
     console.log("App listening on PORT" + PORT);
 });
